@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # 3rd party
     'corsheaders',
+    'django_q',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',

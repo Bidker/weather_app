@@ -25,7 +25,7 @@ def send_mail_to_user(user_pk):
     )
 
 
-def send_daily_email():  # TODO: Rename
+def order_mails_to_sent():
     users = User.objects.filter(followed_cities__isnull=False).all()
 
     for user in users:

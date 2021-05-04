@@ -8,19 +8,16 @@ def create_crone_task(apps, schema_editor):
     from django_q.models import Schedule
 
     Schedule.objects.create(
-        func='weatherwoman.tasks.send_daily_email',
+        func='weatherwoman.tasks.order_mails_to_sent',
         schedule_type=Schedule.DAILY, next_run=timezone.now().replace(hour=8, minute=0),
     )
 
 
-def reverse_crone_task(apps, schema_editor):
-    pass
-
-
 class Migration(migrations.Migration):
     dependencies = [
+        ('django_q', '0013_task_attempt_count'),
     ]
 
     operations = [
-        migrations.RunPython(create_crone_task, reverse_crone_task)
+        migrations.RunPython(create_crone_task)
     ]

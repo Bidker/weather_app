@@ -21,5 +21,6 @@ RUN pip install -r requirements.txt
 COPY . /weath_app/
 
 ENTRYPOINT \
+    python manage.py migrate weatherwoman && \
     python manage.py collectstatic --no-input && \
     python manage.py runserver 0:8002

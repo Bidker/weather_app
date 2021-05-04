@@ -30,6 +30,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db_default
+      - app_auth
     environment:
       DB_DEFAULT_HOST: db_default
     ports:
