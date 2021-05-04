@@ -1,0 +1,27 @@
+<form [formGroup]="form">
+
+<div class="text-danger" *ngIf="isSubscribeError">
+  <div *ngFor="let error of subscribeErrorsNotes | keyvalue">
+    {{error.key}}:{{error.value}}
+  </div>
+</div>
+
+<fieldset>
+    <legend>Subscribe or search weather for city</legend>
+
+    <div class="form-field">
+      <label>City:</label>
+      <input name="city" formControlName="city">
+    </div>
+
+    <div class="form-field">
+      <label>County code:</label>
+      <input name="county_code" formControlName="county_code">
+    </div>
+  </fieldset>
+
+  <div class="form-buttons">
+    <button class="button button-primary" (click)="subscribeCity()">Subscribe</button>
+  </div>
+
+</form>

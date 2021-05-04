@@ -1,0 +1,49 @@
+version: "3.5"
+
+services:
+
+  db_default:
+    image: "postgres:13.0"
+    environment:
+      POSTGRES_PASSWORD: "app"
+      POSTGRES_USER: "app"
+      POSTGRES_DB: "app"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app_auth:
+    build:
+      context: authorization
+      dockerfile: Dockerfile
+    depends_on:
+      - db_default
+    environment:
+      DB_DEFAULT_HOST: db_default
+    ports:
+      - 8001:8001
+
+  app_weather:
+    build:
+      context: weather
+      dockerfile: Dockerfile
+    depends_on:
+      - db_default
+    environment:
+      DB_DEFAULT_HOST: db_default
+    ports:
+      - 8002:8002
+
+  djangoq:
+    build:
+      context: weather
+      dockerfile: Dockerfile-djangoq
+    environment:
+      DB_DEFAULT_HOST: db_default
+    depends_on:
+      - db_default
+
+volumes:
+  db-data:
+    driver: local

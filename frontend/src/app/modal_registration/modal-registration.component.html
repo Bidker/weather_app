@@ -1,0 +1,45 @@
+<div id="modal-content-wrapper">
+  <header id="modal-header">
+    <legend id="modal-title">Sign up</legend>
+  </header>
+  <section id="modal-body">
+
+    <div *ngIf="isRegistrationError">
+      <div
+        *ngFor="let error of registrationErrorNotes | keyvalue"
+      >
+        {{error.key}}:{{error.value}}
+      </div>
+    </div>
+
+    <form [formGroup]="form">
+      <fieldset>
+        <div class="form-field">
+          <label>Username:</label>
+          <input name="username" formControlName="username">
+        </div>
+
+        <div class="form-field">
+          <label>Email:</label>
+          <input name="email" formControlName="email" type="email">
+        </div>
+
+        <div class="form-field">
+          <label>Password:</label>
+          <input name="password1" formControlName="password1" type="password">
+        </div>
+
+        <div class="form-field">
+          <label>Confirm password:</label>
+          <input name="password2" formControlName="password2" type="password">
+        </div>
+      </fieldset>
+
+      <footer id="modal-footer" class="form-buttons">
+        <button mat-raised-button id="modal-action-button" class="button button-primary" (click)="register()">Sign up</button>
+        <button mat-raised-button id="modal-cancel-button" class="button button-primary" (click)="closeModal()">Go back</button>
+      </footer>
+
+    </form>
+  </section>
+</div>

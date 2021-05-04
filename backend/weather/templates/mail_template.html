@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+Hi! <br/>
+It's your daily weather for cities: <br/>
+
+{% for city, forecast in forecasts %}
+    <b>Location: {{ city }}</b>
+    <img src="http://openweathermap.org/img/wn/{{ forecast.weather_icon_name }}@2x.png" alt="{{ detailed_status }}"/>
+    <br/>
+    temperature: {{ forecast.temp.temp }} <br/>
+    cloudiness: {{ forecast.clouds }}% <br/>
+    humidity: {{ forecast.humidity }}% <br/>
+{% endfor %}
+</body>
+
+</html>

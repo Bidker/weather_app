@@ -1,0 +1,30 @@
+<div *ngIf="!authService.isLoggedIn">
+  <form [formGroup]="form">
+    <p class="text-danger" *ngIf="isLoggingError">
+      This username or password is incorrect.
+    </p>
+    <fieldset>
+      <legend>Sign in</legend>
+      <div class="form-field">
+        <label>Username:</label>
+        <input name="username" formControlName="username">
+      </div>
+      <div class="form-field">
+        <label>Password:</label>
+        <input name="password" formControlName="password"
+               type="password">
+      </div>
+    </fieldset>
+    <div class="form-buttons">
+      <button class="button button-primary" (click)="login()">Sign in</button>
+      <br/><br/>
+      <span>
+        or <button class="button button-primary" (click)="openModal()">Sign up</button>
+      </span>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="authService.isLoggedIn">
+  <router-outlet></router-outlet>
+</div>
